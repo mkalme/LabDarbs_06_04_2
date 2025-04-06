@@ -94,6 +94,7 @@ def test(String environment, String testSuite, String type){
         fi
         git clone https://github.com/mtararujs/course-js-api-framework
         cd course-js-api-framework
+        npm install
         npm run ${testSuite} ${testSuite}_${environment}
     """
 }
