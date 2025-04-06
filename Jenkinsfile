@@ -65,10 +65,14 @@ pipeline {
 def buildApp(){
     echo 'Installing all required dependencies...'
 
-    sh 'if [ -d "python-greetings" ]; then rm -rf python-greetings; fi'
-    sh 'git clone https://github.com/mtararujs/python-greetings'
-    sh 'cd python-greetings'
-    sh 'pip install -r requirements.txt --break-system-packages'
+    sh '''
+        if [ -d "python-greetings" ]; then 
+            rm -rf python-greetings
+        fi
+        git clone https://github.com/mtararujs/python-greetings
+        cd python-greetings
+        pip install -r requirements.txt --break-system-packages
+    '''
 }
 
 def deploy(String environment){
