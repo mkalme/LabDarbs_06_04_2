@@ -65,10 +65,10 @@ pipeline {
 def buildApp(){
     echo 'Installing all required dependencies...'
 
-    bat 'if exist python-greetings rmdir /s /q python-greetings'
-    bat 'git clone https://github.com/mtararujs/python-greetings'
-    bat 'cd python-greetings'
-    bat 'pip install -r requirements.txt'
+    sh 'if [ -d "python-greetings" ]; then rm -rf python-greetings; fi'
+    sh 'git clone https://github.com/mtararujs/python-greetings'
+    sh 'cd python-greetings'
+    sh 'pip install -r requirements.txt'
 }
 
 def deploy(String environment){
