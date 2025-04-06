@@ -76,5 +76,5 @@ def deploy(String environment){
 }
 
 def test(String environment){
-    echo "Running tests on production ${environment}..."
+    echo "Running tests on production ${environment}.. ."
 }
