@@ -80,6 +80,7 @@ def deploy(String environment, int port, String type){
 
     sh """
         pm2 delete greetings-app-${environment} || true
+        cd python-greetings
         pm2 start app.py --name greetings-app-${environment} -- --port ${port}
     """
 }
