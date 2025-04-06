@@ -8,56 +8,73 @@ pipeline {
     stages {
         stage('install-pip-deps') {
             steps {
-                echo 'Installing all required dependencies...'
+                build()
             }
         }
 
         stage('deploy-to-dev') {
             steps {
-                echo 'Deploying to development environment...'
+                deploy("development")
             }
         }
 
         stage('tests-on-dev') {
             steps {
-                echo 'Running tests on development environment...'
+                test("development")
             }
         }
 
         stage('deploy-to-staging') {
             steps {
-                echo 'Deploying to staging environment...'
+                deploy("staging")
             }
         }
 
         stage('tests-on-staging') {
             steps {
-                echo 'Running tests on staging environment...'
+                test("staging")
             }
         }
 
         stage('deploy-to-preprod') {
             steps {
-                echo 'Deploying to pre-production environment...'
+                deploy("pre-production")
             }
         }
 
         stage('tests-on-preprod') {
             steps {
-                echo 'Running tests on pre-production environment... '
+                test("pre-production")
             }
         }
 
         stage('deploy-to-prod') {
             steps {
-                echo 'Deploying to production environment...'
+                deploy("production")
             }
         }
 
         stage('tests-on-prod') {
             steps {
-                echo 'Running tests on production environment...'
+                test("production")
             }
         }
     }
+}
+
+def build(){
+    echo 'Installing all required dependencies...'
+
+    bat 'if exist python-greetings rmdir /s /q python-greetings'
+    bat 'git clone https://github.com/mtararujs/python-greetings'
+    bat 'cd python-greetings'
+    bat 'pip install -r requirements.txt'
+}
+
+def deploy(String environment){
+    echo "Deploying to production ${environment}..."
+}
+
+def test(String environment){
+    echo "Running tests on production ${environment}..."
 }
