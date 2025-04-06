@@ -56,7 +56,7 @@ pipeline {
 
         stage('tests-on-prod') {
             steps {
-                test("prd", "greetings", "production")
+                test("prod", "greetings", "production")
             }
         }
     }
