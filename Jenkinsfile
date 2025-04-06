@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('install-pip-deps') {
             steps {
-                build()
+                buildApp()
             }
         }
 
@@ -62,7 +62,7 @@ pipeline {
     }
 }
 
-def build(){
+def buildApp(){
     echo 'Installing all required dependencies...'
 
     bat 'if exist python-greetings rmdir /s /q python-greetings'
